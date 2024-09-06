@@ -109,7 +109,13 @@ const Home: FC<HomeProps> = () => {
         });
  
     };
- 
+    const getUserById = async (idUtente:number) => {
+       /* const urlRootAPI = "https://jsonplaceholder.typicode.com/";
+        const API_URL = urlRootAPI + "users/"+ idUtente;
+        console.log("getUserById - URL Endpoint = " +  API_URL);*/
+        localStorage.setItem("userid", String(idUtente));
+        navigate('/InfoUtente');
+    }
  
     return (
         <Layout>
@@ -182,6 +188,8 @@ const Home: FC<HomeProps> = () => {
                                         <th>User Id</th>
                                         <th>Title</th>
                                         <th>Post Body</th>
+                                        <th>#</th>
+                            
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -191,6 +199,8 @@ const Home: FC<HomeProps> = () => {
                                         <td>{post.userId}</td>
                                         <td>{post.title}</td>
                                         <td>{post.body}</td>
+                                        <td><Button color="inherit" variant="contained" className={styles.MarginLeftAuto} onClick={() => getUserById(post.userId)}>Get User Info</Button>
+                                        </td>
                                     </tr>
                                     ))}
                                 </tbody>
